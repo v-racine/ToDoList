@@ -67,12 +67,6 @@ class ToDoList {
     return this.todos[index];
   }
 
-  _validateIndex(index) { // _ in name suggests a "private" method
-    if (!(index in this.todos)) {
-      throw new ReferenceError(`invalid index: ${index}`);
-    }
-  }
-
   markDoneAt(idx) {
     this._validateIndex(idx);
     let task = this.todos[idx];
@@ -125,25 +119,42 @@ class ToDoList {
     return newList;
   }
 
+  findByTitle(title) {
+    return this.filter(todo => todo.getTitle() === title).first();
+  }
+
+  allDone(){
+    return this.filter(todo => todo.isDone());
+  }
+
+  notAllDone() {
+    return this.filter(todo => !todo.isDone())
+  }
+
+  markDone(title) {
+    let todo = this.findByTitle(title);
+    if (todo !== undefined) {
+      todo.markDone();
+    }
+  }
+
+  markAllDone() {
+    this.forEach(todo => todo.markDone());
+  }
+
+  markAllUndone() {
+    this.forEach(todo => todo.markUndone());
+  }
+
+  toArray() {
+    return this.todos.slice();
+  }
+
+  _validateIndex(index) { // _ in name suggests a "private" method
+    if (!(index in this.todos)) {
+      throw new ReferenceError(`invalid index: ${index}`);
+    }
+  }
 }
 
-//TESTS 
-let todo1 = new ToDo("Buy milk");
-let todo2 = new ToDo("Clean room");
-let todo3 = new ToDo("Go to the gym");
-let todo4 = new ToDo("Go shopping");
-let todo5 = new ToDo("Feed the cats");
-let todo6 = new ToDo("Study for Launch School");
-let list = new ToDoList("Today's Todos");
 
-list.add(todo1);
-list.add(todo2);
-list.add(todo3);
-list.add(todo4);
-list.add(todo5);
-list.add(todo6);
-todo1.markDone();
-todo5.markDone();
-
-let doneTodos = list.filter(todo => todo.isDone()).first().toString();
-console.log(doneTodos);
