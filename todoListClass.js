@@ -115,6 +115,16 @@ class ToDoList {
     this.todos.forEach(callback);
   }
 
+  filter(callback) {
+    let newList = new ToDoList(this.title);
+    this.forEach((todo) => {
+      if (callback(todo)) {
+        newList.add(todo);
+      }
+    })
+    return newList;
+  }
+
 }
 
 //TESTS 
@@ -126,14 +136,14 @@ let todo5 = new ToDo("Feed the cats");
 let todo6 = new ToDo("Study for Launch School");
 let list = new ToDoList("Today's Todos");
 
-
 list.add(todo1);
 list.add(todo2);
 list.add(todo3);
 list.add(todo4);
 list.add(todo5);
 list.add(todo6);
-console.log(list);
+todo1.markDone();
+todo5.markDone();
 
-//list.todos.forEach(todo => console.log(String(todo)));
-//list.forEach(todo => console.log(todo.toString()));
+let doneTodos = list.filter(todo => todo.isDone()).first().toString();
+console.log(doneTodos);
