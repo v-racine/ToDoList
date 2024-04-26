@@ -1,7 +1,7 @@
 
 //This class represents a todo item and its associated data: the todo title and a boolean 
 //flag that shows whether the item has been completed.
-//The ToDo class will encapulate todo items. 
+//The ToDo class will encapsulate todo items. 
 class ToDo {
   static DONE_MARKER = "X";
   static UNDONE_MARKER = " ";
