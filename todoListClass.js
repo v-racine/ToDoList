@@ -33,23 +33,6 @@ class ToDo {
   }
 }
 
-
-let todo1 = new ToDo("Buy milk");
-let todo2 = new ToDo("Clean room");
-let todo3 = new ToDo("Go to the gym");
-
-// console.log(todo1);
-// console.log(String(todo1));
-console.log(todo1.toString()); // [] Buy milk
-console.log(todo2.toString()); // [] Clean room 
-console.log(todo3.toString()); // [] Go to the gym
-
-todo1.markDone();
-console.log(todo1.toString()); // [X] Buy milk
-console.log(todo1.isDone() ? "The task is completed." : "The task is not yet completed");
-// The task is completed. 
-
-
 //This class will maintain the collection of todo items. 
 //You should be able to perform typical collection-oriented actions
 //on a TodoList object, including iteration and selection.
@@ -127,14 +110,30 @@ class ToDoList {
     let list = this.todos.map(todo => todo.toString()).join("\n");
     return `${title}\n${list}`;
   }
+
+  forEach(callback) {
+    this.todos.forEach(callback);
+  }
+
 }
 
+//TESTS 
+let todo1 = new ToDo("Buy milk");
+let todo2 = new ToDo("Clean room");
+let todo3 = new ToDo("Go to the gym");
+let todo4 = new ToDo("Go shopping");
+let todo5 = new ToDo("Feed the cats");
+let todo6 = new ToDo("Study for Launch School");
 let list = new ToDoList("Today's Todos");
-console.log(list); // TodoList { title: "Today's Todos", todos: [] }
+
 
 list.add(todo1);
 list.add(todo2);
 list.add(todo3);
+list.add(todo4);
+list.add(todo5);
+list.add(todo6);
 console.log(list);
 
-console.log(list.toString());
+//list.todos.forEach(todo => console.log(String(todo)));
+//list.forEach(todo => console.log(todo.toString()));
