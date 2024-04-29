@@ -19,4 +19,7 @@ describe('TodoList', () => {
   });
 
   // your tests go here
+  test('todolist has a size of 3', () => {
+    expect(list.size()).toBe(3);
+  });
 });
